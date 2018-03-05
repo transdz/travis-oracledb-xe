@@ -51,6 +51,8 @@ sudo usermod -aG dba $USER
 ( echo ; echo ; echo travis ; echo travis ; echo n ) | sudo AWK='/usr/bin/awk' /etc/init.d/oracle-xe configure
 
 "$ORACLE_HOME/bin/sqlplus" -L -S / AS SYSDBA <<SQL
+alter user hr account unlock
+alter user hr identified by password
 grant all privileges to hr identified by password;
 CREATE USER travis IDENTIFIED BY travis;
 GRANT CONNECT, RESOURCE TO travis;
